@@ -41,9 +41,13 @@ def check_if_winner(grid, color):
     print(color)
     for r in range(6):
         for c in range(7):
-            if grid[r][c] == color and grid[r][c+1] == color and grid[r][c+2] == 2 and grid[r][c+3] == color:
-                 print(color)
-                 return color
+            if grid[r][c] == color and grid[r][c+1] == color and grid[r][c+2] == color and grid[r][c+3] == color:
+                print(color)
+                return color
+            elif grid[r][c] == color and grid[r+1][c] == color and grid[r+2][c] == color and grid[r+3][c] == color:
+                print(color)
+                return color
+
     return 0
 
 myPen = turtle.Turtle()
@@ -83,7 +87,6 @@ for turn in range(1, 43):
     # Draw the grid
 
     winner = check_if_winner(connect4, playerColor)
-    draw_grid(connect4)
     if winner == 2:
         myPen.penup()
         myPen.color("black")
