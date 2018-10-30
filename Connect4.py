@@ -1,6 +1,4 @@
 import turtle
-from random import randint
-from time import sleep
 
 YELLOW = 1
 RED = 2
@@ -37,22 +35,23 @@ def draw_grid(grid):
 
 
 def check_if_winner(grid, color):
-    #Vertical row checking
+    # Vertical row checking
     for r in range(6):
         for c in range(7):
             if grid[r][c] == color and grid[r][c+1] == color and grid[r][c+2] == color and grid[r][c+3] == color:
                 return color
-    #Horizontal row checking
+    # Horizontal row checking
     for x in range(3):
         for y in range(7):
             if grid[x][y] == color and grid[x+1][y] == color and grid[x+2][y] == color and grid[x+3][y] == color:
                 return color
-    #Diagnal checking
+    # Diagnol checking
     for i in range(3):
         for z in range(3):
             if grid[i][z] == color and grid[i+1][z+1] == color and grid[i+2][z+2] == color and grid[i+3][z+3] == color:
                 return color
     return 0
+
 
 myPen = turtle.Turtle()
 myPen.hideturtle()
@@ -83,8 +82,7 @@ for turn in range(1, 43):
     row = 5
     while connect4[row][column] != 0:
         row = row - 1
-
-    # Find out the colour of the current player (1 or 2)
+# Find out the colour of the current player (1 or 2)
     playerColor = int((turn % 2) + 1)
     # Place the token on the grid
     connect4[row][column] = playerColor
