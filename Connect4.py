@@ -83,6 +83,7 @@ for turn in range(1, 43):
     # Draw the grid
 
     winner = check_if_winner(connect4, playerColor)
+    draw_grid(connect4)
     if winner == 2:
         myPen.penup()
         myPen.color("black")
