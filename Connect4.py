@@ -41,7 +41,7 @@ def check_if_winner(grid, color):
     print(color)
     for r in range(6):
         for c in range(7):
-            if grid[r][c] == 2 and grid[r][c+1] == 2 and grid[r][c+2] == 2 and grid[r][c+3] == 2:
+            if grid[r][c] == color and grid[r][c+1] == color and grid[r][c+2] == 2 and grid[r][c+3] == color:
                  print(color)
                  return color
     return 0
