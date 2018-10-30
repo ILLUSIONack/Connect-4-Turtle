@@ -37,17 +37,21 @@ def draw_grid(grid):
 
 
 def check_if_winner(grid, color):
-    print("in checkifwinner function")
-    print(color)
+    #Vertical row checking
     for r in range(6):
         for c in range(7):
             if grid[r][c] == color and grid[r][c+1] == color and grid[r][c+2] == color and grid[r][c+3] == color:
-                print(color)
                 return color
-            elif grid[r][c] == color and grid[r+1][c] == color and grid[r+2][c] == color and grid[r+3][c] == color:
-                print(color)
+    #Horizontal row checking
+    for x in range(3):
+        for y in range(7):
+            if grid[x][y] == color and grid[x+1][y] == color and grid[x+2][y] == color and grid[x+3][y] == color:
                 return color
-
+    #Diagnal checking
+    for i in range(3):
+        for z in range(3):
+            if grid[i][z] == color and grid[i+1][z+1] == color and grid[i+2][z+2] == color and grid[i+3][z+3] == color:
+                return color
     return 0
 
 myPen = turtle.Turtle()
