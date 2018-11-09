@@ -70,12 +70,12 @@ def check_if_winner(grid, color):
             if grid[r][c] == color and grid[r][c+1] == color and grid[r][c+2] == color and grid[r][c+3] == color:
                 return color
     # Horizontal row checking
-    for x in range(4):
+    for x in range(3):
         for y in range(7):
             if grid[x][y] == color and grid[x+1][y] == color and grid[x+2][y] == color and grid[x+3][y] == color:
                 return color
     # Diagonal checking
-    for i in range(4):
+    for i in range(3):
         for z in range(4):
             if grid[i][z] == color and grid[i+1][z+1] == color and grid[i+2][z+2] == color and grid[i+3][z+3] == color:
                 return color
