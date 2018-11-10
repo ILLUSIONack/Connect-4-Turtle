@@ -102,7 +102,7 @@ draw_grid(connect4)
 
 # Play the game, take it in turn. Up to 42 turns
 for turn in range(1, 43):
-    column_string = window.numinput("Your turn", "Pick column number:", 0, minval=1, maxval=7)
+    column_string = window.numinput("Your turn", "Pick column number:", 1, minval=1, maxval=7)
     column = int(column_string)
     column_minus = column - 1
     while connect4[0][column_minus] != 0:
@@ -115,7 +115,7 @@ for turn in range(1, 43):
     row = 5
     while connect4[row][column_minus] != 0:
         row = row - 1
-# Find out the colour of the current player (1 or 2)
+    # Find out the colour of the current player (1 or 2)
     playerColor = int((turn % 2) + 1)
     # Place the token on the grid
     connect4[row][column_minus] = playerColor
