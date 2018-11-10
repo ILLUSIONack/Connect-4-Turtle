@@ -129,6 +129,13 @@ for turn in range(1, 43):
         myPen.goto(200, 150)
         myPen.write("RED WINS", True, align="center")
         myPen.getscreen().update()
+        user_input = input("Type 'quit' to quit the game")
+        game_over = True
+        while game_over:
+            if user_input == 'quit':
+                game_over = False
+            else:
+                user_input = input("Type 'quit' to quit the game")
         break
     elif winner == 1:
         myPen.penup()
@@ -136,5 +143,13 @@ for turn in range(1, 43):
         myPen.goto(200, 150)
         myPen.write("YELLOW WINS", True, align="center")
         myPen.getscreen().update()
+        user_input = input("Type 'quit' to quit the game")
+        game_over = True
+        while game_over:
+            if user_input == 'quit':
+                game_over = False
+            else:
+                user_input = input("Type 'quit' to quit the game")
         break
     draw_grid(connect4)
+
