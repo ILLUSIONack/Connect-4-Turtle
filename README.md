@@ -1,2 +1,2 @@
 # Connect-4-Game
-Python Turtle
+Connect4 game made in Python Turtle
