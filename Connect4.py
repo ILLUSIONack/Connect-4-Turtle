@@ -1,9 +1,5 @@
 import turtle
 
-YELLOW = 1
-RED = 2
-
-
 # Draw the grid with all the empty slots
 def draw_grid(grid):
     myPen.setheading(0)
@@ -11,11 +7,11 @@ def draw_grid(grid):
     for rower in range(0, 6):
         for col in range(0, 7):
             if grid[rower][col] == 0:
-                myPen.fillcolor("#FFFFFF")
+                myPen.fillcolor("white")
             elif grid[rower][col] == 2:
-                myPen.fillcolor("#FF0000")
+                myPen.fillcolor("red")
             elif grid[rower][col] == 1:
-                myPen.fillcolor("#FFFF00")
+                myPen.fillcolor("yellow")
 
             myPen.begin_fill()
             myPen.circle(25)
@@ -61,6 +57,9 @@ def draw_gamepanel():
         myPen.right(90)
     myPen.end_fill()
     myPen.up()
+    myPen.color("black")
+    myPen.goto(-150, 250)
+    myPen.write("CONNECT 4", True, align="center", font=("Arial", 40, "bold"))
 
 
 def check_if_winner(grid, color):
@@ -79,6 +78,12 @@ def check_if_winner(grid, color):
         for z in range(4):
             if grid[i][z] == color and grid[i+1][z+1] == color and grid[i+2][z+2] == color and grid[i+3][z+3] == color:
                 return color
+
+    for d in range(5,2,-1):
+        for c in range(4):
+            if grid[d][c] == color and grid[d-1][c+1] == color and grid[d-2][c+2] == color and grid[d-3][c+3] == color:
+                return color
+
     return 0
 
 
@@ -88,13 +93,10 @@ myPen.speed(500)
 window = turtle.Screen()
 window.bgcolor("lightgrey")
 myPen.speed(0)
+myPen._tracer(8, 25)
 
 # Initialise empty 6 by 7 connect4 grid
-connect4 = []
-for rows in range(0, 6):
-    connect4.append([])
-    for cols in range(0, 7):
-        connect4[rows].append(0)
+connect4 = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
 
 draw_gamepanel()
 draw_board()
@@ -125,31 +127,32 @@ for turn in range(1, 43):
     draw_grid(connect4)
     if winner == 2:
         myPen.penup()
-        myPen.color("black")
+        myPen.color("red")
         myPen.goto(200, 150)
-        myPen.write("RED WINS", True, align="center")
+        myPen.write("RED WINS", True, align="center", font=("Arial", 20, "bold"))
         myPen.getscreen().update()
-        user_input = input("Type 'quit' to quit the game")
+        user_input = window.textinput("Exit", "Type 'quit' to exit the game")
         game_over = True
         while game_over:
             if user_input == 'quit':
                 game_over = False
+                print("Game has been exited!")
             else:
-                user_input = input("Type 'quit' to quit the game")
+                user_input = window.textinput("Exit", "Type 'quit' to exit the game")
         break
     elif winner == 1:
         myPen.penup()
-        myPen.color("black")
+        myPen.color("Yellow")
         myPen.goto(200, 150)
-        myPen.write("YELLOW WINS", True, align="center")
+        myPen.write("YELLOW WINS", True, align="center", font=("Arial", 20, "bold"))
         myPen.getscreen().update()
-        user_input = input("Type 'quit' to quit the game")
+        user_input = window.textinput("Exit", "Type 'quit' to exit the game")
         game_over = True
         while game_over:
             if user_input == 'quit':
                 game_over = False
+                print("Game has been exited!")
             else:
-                user_input = input("Type 'quit' to quit the game")
+                user_input = window.textinput("Exit", "Type 'quit' to exit the game")
         break
     draw_grid(connect4)
-
