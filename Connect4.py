@@ -44,7 +44,7 @@ def draw_board():
     Pen.end_fill()
 
 
-def draw_gamepanel():
+def draw_game_panel():
     Pen.up()
     Pen.setheading(0)
     Pen.goto(80, 219)
@@ -116,7 +116,7 @@ Pen._tracer(8, 25)
 # Empty grid initialisation
 connect4 = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
 
-draw_gamepanel()
+draw_game_panel()
 draw_board()
 draw_grid(connect4)
 
