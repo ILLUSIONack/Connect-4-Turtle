@@ -1,7 +1,7 @@
 import turtle
 
 
-# Draw the grid with all the empty slots
+# The Drawing of the grid with all the empty slots
 def draw_grid(grid):
     Pen.setheading(0)
     Pen.goto(-350, 130)
@@ -113,15 +113,15 @@ window.bgcolor("lightgrey")
 Pen.speed(0)
 Pen._tracer(8, 25)
 
-# Initialise empty 6 by 7 connect4 grid
+# Empty grid initialisation
 connect4 = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
 
 draw_gamepanel()
 draw_board()
 draw_grid(connect4)
 
-# Play the game, take it in turn. Up to 42 turns
-for turn in range(1, 43):
+# Game loop, play up to 42 turns
+for player_turn in range(1, 43):
     column_string = window.numinput("Your turn", "Pick column number:", 1, minval=1, maxval=7)
     column = int(column_string)
     column_minus = column - 1
@@ -131,12 +131,12 @@ for turn in range(1, 43):
         column = int(column_string)
         column_minus = column - 1
 
-    # Make the chip slide to the bottom of the board, row starting from 5 then minus 1
+    # Make the chips stack up one another
     row = 5
     while connect4[row][column_minus] != 0:
         row = row - 1
     # Find out the colour of the current player (1 or 2)
-    playerColor = int((turn % 2) + 1)
+    playerColor = int((player_turn % 2) + 1)
     # Place the token on the grid
     connect4[row][column_minus] = playerColor
     # Draw the grid
