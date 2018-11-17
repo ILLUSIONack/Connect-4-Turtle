@@ -105,6 +105,7 @@ def display_winner(winners):
         return True
 
 
+
 Pen = turtle.Turtle()
 Pen.hideturtle()
 Pen.speed(500)
