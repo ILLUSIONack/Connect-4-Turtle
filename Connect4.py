@@ -1,6 +1,7 @@
 import turtle
 
 
+
 # The Drawing of the grid with all the empty slots
 def draw_grid(grid):
     Pen.setheading(0)
