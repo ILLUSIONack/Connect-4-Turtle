@@ -1,7 +1,6 @@
 import turtle
 
 
-
 # The Drawing of the grid with all the empty slots
 def draw_grid(grid):
     Pen.setheading(0)
@@ -106,17 +105,22 @@ def display_winner(winners):
         return True
 
 
-
 Pen = turtle.Turtle()
 Pen.hideturtle()
 Pen.speed(500)
 window = turtle.Screen()
+window.screensize(1000, 400)
 window.bgcolor("lightgrey")
 Pen.speed(0)
 Pen._tracer(8, 25)
+turtle.setup(1000, 1000)
 
 # Empty grid initialisation
-connect4 = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
+connect4 = []
+for y in range(6):
+    connect4.append([])
+    for x in range(7):
+        connect4[y].append(0)
 
 draw_game_panel()
 draw_board()
