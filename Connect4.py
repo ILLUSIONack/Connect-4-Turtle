@@ -1,5 +1,18 @@
 import turtle
 
+Pen = turtle.Turtle()
+Pen.hideturtle()
+Pen.speed(500)
+window = turtle.Screen()
+window.screensize(1000, 400)
+window.bgcolor("lightgrey")
+Pen.speed(0)
+Pen._tracer(8, 25)
+turtle.setup(1000, 1000)
+
+# Empty grid initialisation
+connect4 = [[0 for c in range(7)] for x in range(6)]
+
 
 # The Drawing of the grid with all the empty slots
 def draw_grid(grid):
@@ -105,56 +118,43 @@ def display_winner(winners):
         return True
 
 
-Pen = turtle.Turtle()
-Pen.hideturtle()
-Pen.speed(500)
-window = turtle.Screen()
-window.screensize(1000, 400)
-window.bgcolor("lightgrey")
-Pen.speed(0)
-Pen._tracer(8, 25)
-turtle.setup(1000, 1000)
+def loop():
+    # Game loop, play up to 42 turns
+    for player_turn in range(1, 43):
+        column_string = window.numinput("Your turn", "Pick column number:", 1, minval=1, maxval=7)
+        column = int(column_string)
+        column_minus = column - 1
+        while connect4[0][column_minus] != 0:
+            # This column is already full, pick another one
+            column_string = window.numinput("Your turn", "Pick other column number row is full:", 1, minval=1, maxval=7)
+            column = int(column_string)
+            column_minus = column - 1
 
-# Empty grid initialisation
-connect4 = []
-for y in range(6):
-    connect4.append([])
-    for x in range(7):
-        connect4[y].append(0)
+        # Make the chips stack up one another
+        row = 5
+        while connect4[row][column_minus] != 0:
+            row = row - 1
+        # Find out the colour of the current player (1 or 2)
+        playerColor = int((player_turn % 2) + 1)
+        # Place the token on the grid
+        connect4[row][column_minus] = playerColor
+        # Draw the grid
+        winner = check_if_winner(connect4, playerColor)
+        draw_grid(connect4)
+        if display_winner(winner):
+            user_input = window.textinput("Exit", "Type 'quit' to exit the game")
+            while True:
+                if user_input == 'quit':
+                    print("Game has been exited!")
+                    break
+                else:
+                    user_input = window.textinput("Exit", "Type 'quit' to exit the game")
+            break
+        draw_grid(connect4)
+
 
 draw_game_panel()
 draw_board()
 draw_grid(connect4)
+loop()
 
-# Game loop, play up to 42 turns
-for player_turn in range(1, 43):
-    column_string = window.numinput("Your turn", "Pick column number:", 1, minval=1, maxval=7)
-    column = int(column_string)
-    column_minus = column - 1
-    while connect4[0][column_minus] != 0:
-        # This column is already full, pick another one
-        column_string = window.numinput("Your turn", "Pick other column number row is full:", 1, minval=1, maxval=7)
-        column = int(column_string)
-        column_minus = column - 1
-
-    # Make the chips stack up one another
-    row = 5
-    while connect4[row][column_minus] != 0:
-        row = row - 1
-    # Find out the colour of the current player (1 or 2)
-    playerColor = int((player_turn % 2) + 1)
-    # Place the token on the grid
-    connect4[row][column_minus] = playerColor
-    # Draw the grid
-    winner = check_if_winner(connect4, playerColor)
-    draw_grid(connect4)
-    if display_winner(winner):
-        user_input = window.textinput("Exit", "Type 'quit' to exit the game")
-        while True:
-            if user_input == 'quit':
-                print("Game has been exited!")
-                break
-            else:
-                user_input = window.textinput("Exit", "Type 'quit' to exit the game")
-        break
-    draw_grid(connect4)
